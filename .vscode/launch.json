@@ -1,0 +1,71 @@
+{
+  "configurations": [
+    {
+      "cwd": "${workspaceFolder}",
+      "executable": "./build/boot/boot-iap.elf",
+      "name": "Debug Boot with JLink",
+      "request": "launch",
+      "type": "cortex-debug",
+      "device": "N32g435RB",
+      "runToEntryPoint": "main",
+      "showDevDebugOutput": "none",
+      "serverpath": "C:\\Program Files\\SEGGER\\JLink\\JLinkGDBServerCL.exe",
+      "servertype": "jlink"
+    },
+    {
+      "cwd": "${workspaceFolder}",
+      "executable": "./build/app/rtt-modbus.elf",
+      "name": "Debug App with JLink",
+      "request": "launch",
+      "type": "cortex-debug",
+      "device": "N32g435RB",
+      "runToEntryPoint": "main",
+      "showDevDebugOutput": "none",
+      "serverpath": "C:\\Program Files\\SEGGER\\JLink\\JLinkGDBServerCL.exe",
+      "servertype": "jlink"
+    },
+    {
+      "cwd": "${workspaceFolder}/projects/n32g43x_RTT_UART/GCC",
+      "executable": "./build/rtt-modbus.elf",
+      "name": "Debug with Remote JLink-gdb-server",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "entry",
+      "showDevDebugOutput": "none",
+      "servertype": "external",
+      "armToolchainPath": "/config/gcc-arm-none-eabi-10-2020-q4-major/bin/",
+      "gdbTarget": "192.168.122.142:2331"
+    },
+    {
+      "cwd": "${workspaceFolder}/projects/LedBlink/GCC",
+      "executable": "./build/ledblink.elf",
+      "name": "Debug  gcc ledlink",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "showDevDebugOutput": "raw",
+      "servertype": "external",
+      "armToolchainPath": "/config/gcc-arm-none-eabi-10-2020-q4-major/bin/",
+      "gdbTarget": "192.168.122.142:2331"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": "/config/workspace/rtt-modbus/projects/LedBlink/APP/src",
+      "program": "/config/workspace/rtt-modbus/projects/LedBlink/APP/src/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

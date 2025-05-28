@@ -1,0 +1,17 @@
+N32G435终端代码实现
+开发环境
+在keil5开发环境基础上安装tool\Nationstech.N32G43x_DFP.0.9.6.pack即可
+硬件资源详见doc对应文档
+BOOT程序在projects\Bootloader下，对应的工程文件
+projects\Bootloader\MDK-ARM\Bootloader.uvprojx
+编译后生成的BIN文件为
+projects\Bootloader\MDK-ARM\bin\boot-iap.bin
+APP程序在projects\n32g43x_GPS下，对应的工程文件
+projects\n32g43x_RTT_UART\MDK-ARM\UART_DEVICE_REGISTER.uvprojx
+编译后生成的BIN文件为
+projects\n32g43x_RTT_UART\MDK-ARM\bin\UART_DEVICE_REGISTER.bin
+
+烧录脚本：
+tool目录下的N32_jlink烧写目录以及压缩包备份
+N32_jlink烧写
+在N32_jlink烧写目录中，使用说明详见目录下的使用说明

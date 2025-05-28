@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.16)
+set(MCU_TOOLCHAIN_PATH /config/arm/gcc/)
+set(MCU_TARGET_TRIPLET arm-none-eabi)
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cmake/mcu_gcc.cmake)
+set(MCU_TYPE "N32G43x")
+project(n32g43x)
+
+add_subdirectory(projects/Bootloader boot)
+add_subdirectory(projects/n32g43x_RTT_UART app)
+add_subdirectory(projects/LedBlink blink)

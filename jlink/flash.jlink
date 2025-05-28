@@ -1,0 +1,5 @@
+r
+loadfile build/rtt-modbus.bin 0x8000000
+r
+g
+qc

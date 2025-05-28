@@ -1,0 +1,5 @@
+r
+loadfile build/boot/boot-iap.bin 0x8000000
+r
+g
+qc

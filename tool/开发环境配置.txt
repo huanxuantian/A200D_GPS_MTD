@@ -1,0 +1,1 @@
+在keil5开发环境基础上安装Nationstech.N32G43x_DFP.0.9.6.pack即可
