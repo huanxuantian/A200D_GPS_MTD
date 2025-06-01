@@ -338,7 +338,7 @@
               <MiscControls>--c99</MiscControls>
               <Define>N32G43X, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\firmware\CMSIS\core;..\..\..\firmware\CMSIS\device;..\..\..\firmware\n32g43x_std_periph_driver\inc;..\..\..\middlewares\rt-thread\include;..\..\..\middlewares\rt-thread\components\drivers\include\drivers;..\..\..\middlewares\rt-thread\components\drivers\include\ipc;..\..\..\middlewares\rt-thread\components\drivers\include;..\DeviceDrivers\gpio\inc;..\DeviceDrivers\uart\inc;..\APP\inc;..\modbus_rt\rtt_uart;..\modbus_rt\modbus_rt\modbus_rt;..\modbus_rt\modbus_rt\agile_modbus;..\modbus_rt\modbus_rt\slave_util;..\modbus_rt\modbus_rt\platform\rt_thread;..\..\..\middlewares\rt-thread\components\finsh;..\gnss_sk;..\gnss_sk\gps;..\gnss_sk\nmea;..\bsp;..\protocol;..\business;..\DeviceDrivers\spi\inc;..\DeviceDrivers\adc\inc;..\..\..\middlewares\rt-thread\components\drivers\spi;..\..\..\middlewares\rt-thread\components\drivers\spi\sfud\inc;..\DeviceDrivers\rtc\inc;..\protocol\gb905;..\gsm;..\utils;..\protocol\itop;..\protocol\http</IncludePath>
+              <IncludePath>..\..\..\firmware\CMSIS\core;..\..\..\firmware\CMSIS\device;..\..\..\firmware\n32g43x_std_periph_driver\inc;..\..\..\middlewares\rt-thread\include;..\..\..\middlewares\rt-thread\components\drivers\include\drivers;..\..\..\middlewares\rt-thread\components\drivers\include\ipc;..\..\..\middlewares\rt-thread\components\drivers\include;..\DeviceDrivers\gpio\inc;..\DeviceDrivers\uart\inc;..\APP\inc;..\modbus_rt\rtt_uart;..\modbus_rt\modbus_rt\modbus_rt;..\modbus_rt\modbus_rt\agile_modbus;..\modbus_rt\modbus_rt\slave_util;..\modbus_rt\modbus_rt\platform\rt_thread;..\..\..\middlewares\rt-thread\components\finsh;..\gnss_sk;..\gnss_sk\gps;..\gnss_sk\nmea;..\bsp;..\protocol;..\business;..\DeviceDrivers\spi\inc;..\DeviceDrivers\adc\inc;..\..\..\middlewares\rt-thread\components\drivers\spi;..\..\..\middlewares\rt-thread\components\drivers\spi\sfud\inc;..\DeviceDrivers\rtc\inc;..\protocol\gb905;..\gsm;..\utils;..\protocol\itop;..\protocol\http;..\utils\struct2json</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -927,6 +927,11 @@
               <FileType>1</FileType>
               <FilePath>..\business\status.c</FilePath>
             </File>
+            <File>
+              <FileName>meter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\business\meter.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -958,16 +963,6 @@
               <FilePath>..\protocol\gb905\gb905_protocol.c</FilePath>
             </File>
             <File>
-              <FileName>itop_protocol.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\protocol\itop\itop_protocol.c</FilePath>
-            </File>
-            <File>
-              <FileName>itop_authorize.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\protocol\itop\itop_authorize.c</FilePath>
-            </File>
-            <File>
               <FileName>module_http.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\protocol\http\module_http.c</FilePath>
@@ -976,6 +971,26 @@
               <FileName>http_client.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\protocol\http\http_client.c</FilePath>
+            </File>
+            <File>
+              <FileName>gb905_operate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\protocol\gb905\gb905_operate.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>struct2json</GroupName>
+          <Files>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\utils\struct2json\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>s2j.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\utils\struct2json\s2j.c</FilePath>
             </File>
           </Files>
         </Group>

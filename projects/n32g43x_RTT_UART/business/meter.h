@@ -84,8 +84,8 @@ typedef union
 		unsigned char reserve:2;
 		unsigned char stop:1;		//锁定状态（时间锁定）
 		unsigned char :0;
-    }flag;
-}meter_state_t;
+    }__packed flag;
+}__packed meter_state_t;
 
 typedef struct{
 	meter_state_t meter_state;
