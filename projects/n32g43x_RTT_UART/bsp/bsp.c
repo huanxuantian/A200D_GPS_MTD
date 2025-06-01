@@ -136,9 +136,9 @@ int acc_state_poll(char mode)
 	if(mode==0){//old mode
 		if(check_acc_state())
 		{
-			return 2;
+			return ACC_ON_DETECT;
 		}else{
-			return 1;
+			return ACC_OFF_DETECT;
 		}
 	}else{
 		return acc_check_new();
