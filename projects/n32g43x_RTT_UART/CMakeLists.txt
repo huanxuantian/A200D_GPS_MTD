@@ -101,7 +101,7 @@ AUX_SOURCE_DIRECTORY("../../middlewares/rt-thread/components/drivers/serial" DIR
 AUX_SOURCE_DIRECTORY("../../middlewares/rt-thread/components/drivers/spi/sfud/src" DIR_SRCS)
 
 
-set(STARTUP_ASM ../../firmware/CMSIS/device/startup/startup_n32g43x_gcc.s)
+set(STARTUP_ASM ../../firmware/CMSIS/device/startup/startup_n32g43x_gcc_rtt.s)
 
 set(RTTHREAD_ASM ../../middlewares/rt-thread/libcpu/cortex-m4/context_gcc_w.s)
 
