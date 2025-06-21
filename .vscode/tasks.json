@@ -1,0 +1,12 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "brun app",
+            "type": "shell",
+            "command": "& 'C:\\Program Files\\SEGGER\\JLink\\JLink.exe' -if swd -speed 4000 -device N32G435RB -autoconnect 1 -CommanderScript jlink\\app-flash.jlink"
+        }
+    ]
+}
