@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-#include <protocol.h>
+#include <stdbool.h>
+#include <utils.h>
+#include "http_client.h"
 
 
 //请求GET 文件报文构造函数

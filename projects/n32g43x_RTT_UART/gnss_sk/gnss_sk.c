@@ -5,7 +5,7 @@
 #include "utils.h"
 
 #include "pin.h"
-#include "gps/gps.h"
+#include <gps.h>
 #include "gnss_port.h"
 #include "gnss_if.h"
 #include "gnss_sk.h"

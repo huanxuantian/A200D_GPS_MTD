@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include "io_usr_cfg.h"
+
 #include "bsp.h"
 #include "flash_data_def.h"
 #include "update_file_define.h"

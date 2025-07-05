@@ -24,7 +24,7 @@ extern "C" {
 #include "gb905/gb905_control.h"
 #include "gb905/gb905_operate.h"
 
-#include "http/http_client.h"
+#include "http_client.h"
 #include "http/module_http.h"
 
 

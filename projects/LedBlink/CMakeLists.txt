@@ -1,21 +1,22 @@
 cmake_minimum_required(VERSION 3.16)
 
+set(TOP_BASE "../../")
 #set(MCU_TOOLCHAIN_PATH /config/arm/gcc/)
 #set(MCU_TARGET_TRIPLET arm-none-eabi)
-#set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/../../cmake/mcu_gcc.cmake)
+#set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/${TOP_BASE}cmake/mcu_gcc.cmake)
 
 set(MCU_TYPE "N32G43x")
 project(LedBlink C ASM)
 
 INCLUDE_DIRECTORIES("APP/inc")
-INCLUDE_DIRECTORIES("../../firmware/CMSIS/core")
-INCLUDE_DIRECTORIES("../../firmware/CMSIS/device")
-INCLUDE_DIRECTORIES("../../firmware/n32g43x_std_periph_driver/inc")
+INCLUDE_DIRECTORIES("${TOP_BASE}firmware/CMSIS/core")
+INCLUDE_DIRECTORIES("${TOP_BASE}firmware/CMSIS/device")
+INCLUDE_DIRECTORIES("${TOP_BASE}firmware/n32g43x_std_periph_driver/inc")
 
 AUX_SOURCE_DIRECTORY("APP/src" DIR_SRCS)
-AUX_SOURCE_DIRECTORY("../../firmware/CMSIS/device" DIR_SRCS)
+AUX_SOURCE_DIRECTORY("${TOP_BASE}firmware/CMSIS/device" DIR_SRCS)
 
-set(STARTUP_ASM ../../firmware/CMSIS/device/startup/startup_n32g43x_gcc.s)
+set(STARTUP_ASM ${TOP_BASE}firmware/CMSIS/device/startup/startup_n32g43x_gcc.s)
 
 set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/APP/link.lds)
 
@@ -25,9 +26,9 @@ add_definitions("-DN32G43X")
 set(PROJECT_SOURCES
     ${DIR_SRCS}
     ${STARTUP_ASM}
-    "../../firmware/n32g43x_std_periph_driver/src/n32g43x_gpio.c"
-    "../../firmware/n32g43x_std_periph_driver/src/n32g43x_rcc.c"
-    "../../firmware/n32g43x_std_periph_driver/src/misc.c"
+    "${TOP_BASE}firmware/n32g43x_std_periph_driver/src/n32g43x_gpio.c"
+    "${TOP_BASE}firmware/n32g43x_std_periph_driver/src/n32g43x_rcc.c"
+    "${TOP_BASE}firmware/n32g43x_std_periph_driver/src/misc.c"
 )
 
 message("#########################################")

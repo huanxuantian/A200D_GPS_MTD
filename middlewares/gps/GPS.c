@@ -2,10 +2,10 @@
 #define DBG_TAG    "GPS"
 #include <rtdbg.h>
 
-#include "utils.h"
+#include <utils.h>
 
 #include "gps.h"
-#include "MicroNMEA.h"
+#include <MicroNMEA.h>
 
 //#include <math.h>
 

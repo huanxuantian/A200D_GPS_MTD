@@ -45,41 +45,41 @@ rt_err_t uart_input(rt_device_t serial, rt_size_t size)
     RT_ASSERT(serial != RT_NULL);
 		object = &serial->parent;
 #if defined(RTU_USING_UART1)
-	if (rt_strncmp(object->name, "usart1", RT_NAME_MAX) == 0){
+	if (rt_strncmp(object->name, UART1_DEV_NAME, RT_NAME_MAX) == 0){
 		rt_sem_release(_rx1_notice);
 	}
 #endif
 
 #if defined(RTU_USING_UART2)
-		if (rt_strncmp(object->name, "usart2", RT_NAME_MAX) == 0){
+		if (rt_strncmp(object->name, UART2_DEV_NAME, RT_NAME_MAX) == 0){
 		rt_sem_release(_rx2_notice);
 	}
 #endif
 
 
 #if defined(RTU_USING_UART3)
-    if (rt_strncmp(object->name, "usart3", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART3_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_release(_rx3_notice);
     }
 #endif
 
 #if defined(RTU_USING_UART4)
-    if (rt_strncmp(object->name, "uart4", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART4_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_release(_rx4_notice);
     }
 #endif
 
 #if defined(RTU_USING_UART5)
-    if (rt_strncmp(object->name, "uart5", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART5_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_release(_rx5_notice);
     }
 #endif
 
 #if defined(RTU_USING_UART6)
-    if (rt_strncmp(object->name, "uart6", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART6_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_release(_rx6_notice);
     }
@@ -99,42 +99,42 @@ void uart_rs485_dir_init(rt_device_t serial)
     RT_ASSERT(serial != RT_NULL);
 		object = &serial->parent;
 #if defined(RTU_USING_UART1) && defined(RTU_UART1_USING_RS485)
-    if (rt_strncmp(object->name, "usart1", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART1_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_pin_mode(UART1_RS485_RE_PIN, PIN_MODE_OUTPUT);
     }
 #endif
 
 #if defined(RTU_USING_UART2) && defined(RTU_UART2_USING_RS485)
-    if (rt_strncmp(object->name, "usart2", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART2_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_pin_mode(UART2_RS485_RE_PIN, PIN_MODE_OUTPUT);
     }
 #endif
 
 #if defined(RTU_USING_UART3) && defined(RTU_UART3_USING_RS485)
-    if (rt_strncmp(object->name, "usart3", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART3_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_pin_mode(UART3_RS485_RE_PIN, PIN_MODE_OUTPUT);
     }
 #endif
 
 #if defined(RTU_USING_UART4) && defined(RTU_UART4_USING_RS485)
-    if (rt_strncmp(object->name, "uart4", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART4_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_pin_mode(UART4_RS485_RE_PIN, PIN_MODE_OUTPUT);
     }
 #endif
 
 #if defined(RTU_USING_UART5) && defined(RTU_UART5_USING_RS485)
-    if (rt_strncmp(object->name, "uart5", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART5_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_pin_mode(UART5_RS485_RE_PIN, PIN_MODE_OUTPUT);
     }
 #endif
 
 #if defined(RTU_USING_UART6) && defined(RTU_UART6_USING_RS485)
-    if (rt_strncmp(object->name, "uart6", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART6_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_pin_mode(UART6_RS485_RE_PIN, PIN_MODE_OUTPUT);
     }
@@ -155,7 +155,7 @@ void uart_rs485_dir(rt_device_t serial, rs485_dir_type dir)
 		object = &serial->parent;
 
 #if defined(RTU_USING_UART1) && defined(RTU_UART1_USING_RS485)
-    if (rt_strncmp(object->name, "usart1", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART1_DEV_NAME, RT_NAME_MAX) == 0)
     {
         if(dir == DIR_TX)
         {
@@ -169,7 +169,7 @@ void uart_rs485_dir(rt_device_t serial, rs485_dir_type dir)
 #endif
 
 #if defined(RTU_USING_UART2) && defined(RTU_UART2_USING_RS485)
-    if (rt_strncmp(object->name, "usart2", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART2_DEV_NAME, RT_NAME_MAX) == 0)
     {
         if(dir == DIR_TX)
         {
@@ -183,7 +183,7 @@ void uart_rs485_dir(rt_device_t serial, rs485_dir_type dir)
 #endif
 
 #if defined(RTU_USING_UART3) && defined(RTU_UART3_USING_RS485)
-    if (rt_strncmp(object->name, "usart3", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART3_DEV_NAME, RT_NAME_MAX) == 0)
     {
         if(dir == DIR_TX)
         {
@@ -197,7 +197,7 @@ void uart_rs485_dir(rt_device_t serial, rs485_dir_type dir)
 #endif
 
 #if defined(RTU_USING_UART4) && defined(RTU_UART4_USING_RS485)
-    if (rt_strncmp(object->name, "uart4", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART4_DEV_NAME, RT_NAME_MAX) == 0)
     {
         if(dir == DIR_TX)
         {
@@ -211,7 +211,7 @@ void uart_rs485_dir(rt_device_t serial, rs485_dir_type dir)
 #endif
 
 #if defined(RTU_USING_UART5) && defined(RTU_UART5_USING_RS485)
-    if (rt_strncmp(object->name, "uart5", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART5_DEV_NAME, RT_NAME_MAX) == 0)
     {
         if(dir == DIR_TX)
         {
@@ -225,7 +225,7 @@ void uart_rs485_dir(rt_device_t serial, rs485_dir_type dir)
 #endif
 
 #if defined(RTU_USING_UART6) && defined(RTU_UART6_USING_RS485)
-    if (rt_strncmp(object->name, "uart6", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART6_DEV_NAME, RT_NAME_MAX) == 0)
     {
         if(dir == DIR_TX)
         {
@@ -251,7 +251,7 @@ rt_err_t uart_sem_create(rt_device_t serial)
     RT_ASSERT(serial != RT_NULL);
 		object = &serial->parent;
 #if defined(RTU_USING_UART1)
-    if (rt_strncmp(object->name, "usart1", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART1_DEV_NAME, RT_NAME_MAX) == 0)
     {
         _rx1_notice = rt_sem_create("485_rx1", 0, RT_IPC_FLAG_FIFO);
         if (_rx1_notice == RT_NULL)
@@ -262,7 +262,7 @@ rt_err_t uart_sem_create(rt_device_t serial)
 #endif
 
 #if defined(RTU_USING_UART2)
-    if (rt_strncmp(object->name, "usart2", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART2_DEV_NAME, RT_NAME_MAX) == 0)
     {
         _rx2_notice = rt_sem_create("485_rx2", 0, RT_IPC_FLAG_FIFO);
         if (_rx2_notice == RT_NULL)
@@ -273,7 +273,7 @@ rt_err_t uart_sem_create(rt_device_t serial)
 #endif
 
 #if defined(RTU_USING_UART3)
-    if (rt_strncmp(object->name, "usart3", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART3_DEV_NAME, RT_NAME_MAX) == 0)
     {
         _rx3_notice = rt_sem_create("485_rx3", 0, RT_IPC_FLAG_FIFO);
         if (_rx3_notice == RT_NULL)
@@ -284,7 +284,7 @@ rt_err_t uart_sem_create(rt_device_t serial)
 #endif
 
 #if defined(RTU_USING_UART4)
-    if (rt_strncmp(object->name, "uart4", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART4_DEV_NAME, RT_NAME_MAX) == 0)
     {
         _rx4_notice = rt_sem_create("485_rx4", 0, RT_IPC_FLAG_FIFO);
         if (_rx4_notice == RT_NULL)
@@ -295,7 +295,7 @@ rt_err_t uart_sem_create(rt_device_t serial)
 #endif
 
 #if defined(RTU_USING_UART5)
-    if (rt_strncmp(object->name, "uart5", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART5_DEV_NAME, RT_NAME_MAX) == 0)
     {
         _rx5_notice = rt_sem_create("485_rx5", 0, RT_IPC_FLAG_FIFO);
         if (_rx5_notice == RT_NULL)
@@ -306,7 +306,7 @@ rt_err_t uart_sem_create(rt_device_t serial)
 #endif
 
 #if defined(RTU_USING_UART6)
-    if (rt_strncmp(object->name, "uart6", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART6_DEV_NAME, RT_NAME_MAX) == 0)
     {
         _rx6_notice = rt_sem_create("485_rx6", 0, RT_IPC_FLAG_FIFO);
         if (_rx6_notice == RT_NULL)
@@ -330,42 +330,42 @@ void uart_sem_delete(rt_device_t serial)
     RT_ASSERT(serial != RT_NULL);
 		object = &serial->parent;
 #if defined(RTU_USING_UART1)
-    if (rt_strncmp(object->name, "usart1", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART1_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_delete(_rx1_notice);
     }
 #endif
 
 #if defined(RTU_USING_UART2)
-    if (rt_strncmp(object->name, "usart2", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART2_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_delete(_rx2_notice);
     }
 #endif
 
 #if defined(RTU_USING_UART3)
-    if (rt_strncmp(object->name, "usart3", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART3_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_delete(_rx3_notice);
     }
 #endif
 
 #if defined(RTU_USING_UART4)
-    if (rt_strncmp(object->name, "uart4", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART4_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_delete(_rx4_notice);
     }
 #endif
 
 #if defined(RTU_USING_UART5)
-    if (rt_strncmp(object->name, "uart5", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART5_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_delete(_rx5_notice);
     }
 #endif
 
 #if defined(RTU_USING_UART6)
-    if (rt_strncmp(object->name, "uart6", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART6_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_delete(_rx6_notice);
     }
@@ -384,42 +384,42 @@ void uart_sem_reset(rt_device_t serial)
     RT_ASSERT(serial != RT_NULL);
 		object = &serial->parent;
 #if defined(RTU_USING_UART1)
-    if (rt_strncmp(object->name, "usart1", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART1_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_control(_rx1_notice, RT_IPC_CMD_RESET, RT_NULL);
     }
 #endif
 
 #if defined(RTU_USING_UART2)
-    if (rt_strncmp(object->name, "usart2", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART2_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_control(_rx2_notice, RT_IPC_CMD_RESET, RT_NULL);
     }
 #endif
 
 #if defined(RTU_USING_UART3)
-    if (rt_strncmp(object->name, "usart3", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART3_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_control(_rx3_notice, RT_IPC_CMD_RESET, RT_NULL);
     }
 #endif
 
 #if defined(RTU_USING_UART4)
-    if (rt_strncmp(object->name, "uart4", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART4_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_control(_rx4_notice, RT_IPC_CMD_RESET, RT_NULL);
     }
 #endif
 
 #if defined(RTU_USING_UART5)
-    if (rt_strncmp(object->name, "uart5", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART5_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_control(_rx5_notice, RT_IPC_CMD_RESET, RT_NULL);
     }
 #endif
 
 #if defined(RTU_USING_UART6)
-    if (rt_strncmp(object->name, "uart6", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART6_DEV_NAME, RT_NAME_MAX) == 0)
     {
         rt_sem_control(_rx6_notice, RT_IPC_CMD_RESET, RT_NULL);
     }
@@ -439,42 +439,42 @@ rt_err_t uart_sem_take(rt_device_t serial, rt_int32_t time)
     RT_ASSERT(serial != RT_NULL);
 		object = &serial->parent;
 #if defined(RTU_USING_UART1)
-    if (rt_strncmp(object->name, "usart1", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART1_DEV_NAME, RT_NAME_MAX) == 0)
     {
         return rt_sem_take(_rx1_notice, time);
     }
 #endif
 
 #if defined(RTU_USING_UART2)
-    if (rt_strncmp(object->name, "usart2", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART2_DEV_NAME, RT_NAME_MAX) == 0)
     {
         return rt_sem_take(_rx2_notice, time);
     }
 #endif
 
 #if defined(RTU_USING_UART3)
-    if (rt_strncmp(object->name, "usart3", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART3_DEV_NAME, RT_NAME_MAX) == 0)
     {
         return rt_sem_take(_rx3_notice, time);
     }
 #endif
 
 #if defined(RTU_USING_UART4)
-    if (rt_strncmp(object->name, "uart4", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART4_DEV_NAME, RT_NAME_MAX) == 0)
     {
         return rt_sem_take(_rx4_notice, time);
     }
 #endif
 
 #if defined(RTU_USING_UART5)
-    if (rt_strncmp(object->name, "uart5", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART5_DEV_NAME, RT_NAME_MAX) == 0)
     {
         return rt_sem_take(_rx5_notice, time);
     }
 #endif
 
 #if defined(RTU_USING_UART6)
-    if (rt_strncmp(object->name, "uart6", RT_NAME_MAX) == 0)
+    if (rt_strncmp(object->name, UART6_DEV_NAME, RT_NAME_MAX) == 0)
     {
         return rt_sem_take(_rx6_notice, time);
     }
