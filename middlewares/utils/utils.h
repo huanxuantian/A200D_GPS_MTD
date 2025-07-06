@@ -11,8 +11,8 @@ extern "C" {
 #define __packed    __attribute__((packed))
 #endif
 
-#define DbgFuncEntry() 
-#define DbgFuncExit() 
+#define DbgFuncEntry() 	LOG_D("enter:%s-%s",__FILE__,__FUNC__)
+#define DbgFuncExit() 	LOG_D("exit :%s-%s",__FILE__,__FUNC__)
 
 #define DbgWarn LOG_W
 #define DbgError LOG_E

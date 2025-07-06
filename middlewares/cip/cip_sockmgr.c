@@ -3,11 +3,11 @@
 #include <rtdbg.h>
 #include <rtthread.h>
 
-#include "utils.h"
-#include "gnss_sk.h"
-#include "gsm.h"
-#include <business.h>
+#include <utils.h>
+#include <MicroNMEA.h>
 #include "cip_sockmgr.h"
+
+extern int gateway_handle(int index,void* data,int data_size);
 
 #define MAX_TRY_COUNT 3
 #define MAX_PACK_SIZE 500
@@ -762,9 +762,9 @@ int sys_socket_send(int index,void* data,int data_size){
     return cip_sock_send(cip_dev,index,data,data_size);
 }
 #define AUTH_SOCK_INDEX 2
-void auth_socket_init(void){
+void auth_socket_init(char* host,int port){
     cb_init_static(&gsm_recvbuff_mgr[AUTH_SOCK_INDEX],paser_buffer,sizeof(paser_buffer));
-    cip_sock_open(cip_dev,AUTH_SOCK_INDEX,AUTH_HOST,AUTH_PORT);
+    cip_sock_open(cip_dev,AUTH_SOCK_INDEX,host,port);
 }
 
 int auth_socket_send(void* data,int data_size){
@@ -778,12 +778,12 @@ void auth_socket_exit(){
     cb_deinit_static(&gsm_recvbuff_mgr[2]);
 }
 
-void check_auth_socket_reconnect(){
+void check_auth_socket_reconnect(char* host,int port){
     if(cip_dev==NULL){ return;}
     if(socket_flag[2]<=0){
         cip_sock_close(cip_dev,AUTH_SOCK_INDEX);
         rt_thread_mdelay(150);
-        cip_sock_open(cip_dev,AUTH_SOCK_INDEX,AUTH_HOST,AUTH_PORT);
+        cip_sock_open(cip_dev,AUTH_SOCK_INDEX,host,port);
 		rt_thread_mdelay(500);
     }
 }

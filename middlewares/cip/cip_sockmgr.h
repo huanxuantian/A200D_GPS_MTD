@@ -54,10 +54,10 @@ int cip_paser_callback(gnss_ctx_t *ctx,int read_len,int ack_flag);
 int sys_get_socket_id(int index);
 int sys_socket_send(int index,void* data,int data_size);
 
-void auth_socket_init(void);
+void auth_socket_init(char* host,int port);
 int auth_socket_send(void* data,int data_size);
 void auth_socket_exit();
-void check_auth_socket_reconnect();
+void check_auth_socket_reconnect(char* host,int port);
 int auth_recv_check(unsigned int timeoutms);
 int auth_protocol_anaylze(unsigned char index,unsigned char * buf,int len);
 //http port
