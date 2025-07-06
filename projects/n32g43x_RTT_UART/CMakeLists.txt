@@ -23,6 +23,7 @@ INCLUDE_DIRECTORIES("${TOP_BASE}middlewares/gps")
 INCLUDE_DIRECTORIES("${TOP_BASE}middlewares/nmea")
 
 INCLUDE_DIRECTORIES("bsp")
+INCLUDE_DIRECTORIES("${TOP_BASE}middlewares/sensor")
 INCLUDE_DIRECTORIES("business")
 INCLUDE_DIRECTORIES("${TOP_BASE}middlewares/utils")
 INCLUDE_DIRECTORIES("${TOP_BASE}middlewares/struct2json")
@@ -73,6 +74,7 @@ AUX_SOURCE_DIRECTORY("${TOP_BASE}middlewares/gnss_port" DIR_SRCS)
 AUX_SOURCE_DIRECTORY("${TOP_BASE}middlewares/gps" DIR_SRCS)
 AUX_SOURCE_DIRECTORY("${TOP_BASE}middlewares/nmea" DIR_SRCS)
 
+AUX_SOURCE_DIRECTORY("${TOP_BASE}sensor" DIR_SRCS)
 AUX_SOURCE_DIRECTORY("bsp" DIR_SRCS)
 AUX_SOURCE_DIRECTORY("business" DIR_SRCS)
 AUX_SOURCE_DIRECTORY("${TOP_BASE}middlewares/utils" DIR_SRCS)
@@ -118,6 +120,7 @@ add_definitions("-DUSE_STDPERIPH_DRIVER")
 add_definitions("-DN32G43X")
 
 add_definitions("-DRT_USING_MINILIBC")
+add_definitions("-DI2CSENSOR")
 add_definitions("-DDEBUG_APP")
 #add_definitions("-DDEBUG_UART1")
 add_definitions("-DDEBUG_SWD")
@@ -146,10 +149,14 @@ set(PROJECT_SOURCES
     "${TOP_BASE}middlewares/rt-thread/components/drivers/spi/spi_dev.c"
     "${TOP_BASE}middlewares/rt-thread/components/drivers/spi/spi_flash_sfud.c"
     "${TOP_BASE}middlewares/rt-thread/components/drivers/spi/qspi_core.c"
+    #i2c
+    "${TOP_BASE}middlewares/rt-thread/components/drivers/i2c/i2c_core.c"
+    "${TOP_BASE}middlewares/rt-thread/components/drivers/i2c/i2c_dev.c"
+    "${TOP_BASE}middlewares/rt-thread/components/drivers/i2c/i2c-bit-ops.c"
 )
 
 message("#########################################")
-message( "DEVICE: ${MCU_TYPE}" )
+message( "DEVICE: ${MCU_TYPE} for Project ${PROJECT_NAME}" )
 message("#########################################")
 
 

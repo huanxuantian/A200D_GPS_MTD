@@ -82,7 +82,7 @@
 #define USE_MODBUS_THREAD_TASK (0)
 
 #ifdef RT_USING_CONSOLE
-#define ENABLE_SHELL (1)
+#define ENABLE_SHELL (0)
 /* the buffer size of console*/
 #define RT_CONSOLEBUF_SIZE          128
 // <string name="RT_CONSOLE_DEVICE_NAME" description="The device name for console" default="uart1" />
@@ -126,15 +126,17 @@
 #define RT_FLASH_SPI_MAX_HZ 50000000
 #endif
 
-//#define         RT_USING_I2C
-//#define         RT_USING_I2C_BITOPS
+#define         RT_USING_I2C
+#define         RT_USING_I2C_BITOPS
 
 //#define         RT_USING_HW_RTC_ONLY
 #define         RT_USING_SW_RTC_ONLY
+#define         PKG_USING_SENSOR_BH1750
+#define					PKG_USING_SHT3X
 
 #define					RT_APP_VERSION_M	1
 #define					RT_APP_VERSION_S	0
-#define					RT_APP_VERSION_R	5
+#define					RT_APP_VERSION_R	6
 
 #define STR_M(x) 	#x
 #define STR_CON_VER(x,y,z) STR_M(x.y.z)
@@ -154,6 +156,9 @@
 #define 				RTU_USING_UART5
 
 
+#ifdef I2CSENSOR
+//#define 				USE_RTU_MASTER3	(1)
+#endif
 
 
 #if USE_METER_FUNC
@@ -237,7 +242,12 @@
 /* the max number of opened files   */
 #define DFS_FD_MAX                  4
 #if USE_METER_FUNC
+#ifdef I2CSENSOR
 #undef USE_MODBUS_RTU_MASTER
+#define USE_MODBUS_RTU_MASTER
+#else
+#undef USE_MODBUS_RTU_MASTER
+#endif
 #else
 //modbus function
 #define USE_MODBUS_RTU_MASTER

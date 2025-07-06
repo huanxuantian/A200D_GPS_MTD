@@ -32,7 +32,7 @@ set(PROJECT_SOURCES
 )
 
 message("#########################################")
-message( "DEVICE: ${MCU_TYPE}" )
+message( "DEVICE: ${MCU_TYPE} for Project ${PROJECT_NAME}" )
 message("#########################################")
 
 

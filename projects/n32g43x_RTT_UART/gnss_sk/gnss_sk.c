@@ -167,6 +167,7 @@ static void gnss_thread_entry(void* parameter){
 		}
 		#endif
 		#endif
+		check_sensor_data();
 		if(OSTimeGet()-last_check_rtc_time>=60){
 			adc_v1_value =get_pwr_mv();
 			LOG_I("the PC0 voltage value is %d mV", adc_v1_value);
