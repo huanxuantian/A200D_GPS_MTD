@@ -12,7 +12,7 @@ static uint8_t acc_state=0;
 void update_acc_state(uint8_t state){
 	if(acc_state!=state){
 		acc_state = state;
-		save_satte_file();
+		save_state_file();
 	}
 }
 
@@ -28,7 +28,7 @@ void update_loading_state(uint8_t state){
 		loading_state = state;
 		LOG_E("loading state change %d",state);
 		report_trige(1);
-		save_satte_file();
+		save_state_file();
 	}
 }
 
@@ -57,7 +57,7 @@ void set_meter_soft_lock_seq(unsigned short subtype,unsigned short seq){
 		meter_lock_seq_info.soft_lock_subtype=subtype;
 		meter_lock_seq_info.soft_lock_seq=seq;
 		//save_meter_lock_seq();
-		save_satte_file();
+		save_state_file();
 }
 
 void clear_meter_soft_lock_seq()
@@ -67,7 +67,7 @@ void clear_meter_soft_lock_seq()
 		meter_lock_seq_info.soft_flag=0;
 		meter_lock_seq_info.soft_lock_seq=0;
 		//save_meter_lock_seq();
-		save_satte_file();
+		save_state_file();
 	}
 }
 //计价器锁定的信息缓存
@@ -101,7 +101,7 @@ void set_meter_soft_new_lock_status(unsigned char lock_status,unsigned char lock
 	}
 	DbgWarn("new soft lock new state:%d,subtype:%d;lock status:0x%08x\r\n",
 		lock_status,lock_subtype,meter_lock_cmd_status);
-    save_satte_file();
+    save_state_file();
 }
 
 void clr_meter_soft_new_lock_status()
@@ -109,7 +109,7 @@ void clr_meter_soft_new_lock_status()
 	meter_lock_cmd_status &= ~(0xFF<<(METER_LOCK_TYPE_NEW_S_SOFT));
 	DbgWarn("new soft lock clear;lock status:0x%08x\r\n",
 		meter_lock_cmd_status);
-    save_satte_file();
+    save_state_file();
 }
 
 void set_meter_soft_new_lock_flag(unsigned char lock_status,unsigned char lock_subtype)
@@ -125,7 +125,7 @@ void set_meter_soft_new_lock_flag(unsigned char lock_status,unsigned char lock_s
 	}
 	DbgWarn("new soft lock new state:%d,subtype:%d;lock status:0x%08x\r\n",
 		lock_status,lock_subtype,meter_lock_cmd_status);
-	save_satte_file();
+	save_state_file();
     
 }
 void clr_meter_soft_new_lock_flag()
@@ -133,7 +133,7 @@ void clr_meter_soft_new_lock_flag()
 	meter_lock_cmd_status &= ~(0xFF<<(METER_LOCK_TYPE_NEW_FLAG_S_SOFT));
 	DbgWarn("new soft lock flag clear;lock status:0x%08x\r\n",
 		meter_lock_cmd_status);
-	save_satte_file();
+	save_state_file();
 }
 
 unsigned char get_meter_soft_new_lock_status_subtype(unsigned char lock_subtype){
@@ -179,7 +179,7 @@ void clear_all_meter_lock_status()
 	if(meter_lock_cmd_status!=0)
 	{
 		meter_lock_cmd_status=0;
-		save_satte_file();
+		save_state_file();
 		{
 			meter_limit_lock_info_t meter_lock_ctl;
 			meter_lock_ctl.lock_flag = 0;
@@ -195,7 +195,7 @@ void set_test_lock()
 		set_meter_soft_new_lock_status(1,7);
 		set_meter_soft_lock_seq(7,15);
 		set_meter_soft_new_lock_flag(1,7);
-		save_satte_file();
+		save_state_file();
 		if(get_meter_soft_new_lock_status()!=0)
 		{
 			meter_limit_lock_info_t meter_lock_ctl;

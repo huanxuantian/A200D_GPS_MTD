@@ -75,7 +75,7 @@ void build_sensor_data(unsigned char* buff,int buff_len){
     if(buff_len<sizeof(meter_sensor_data_t)){
         DbgWarn("buffer in too small for sensor data!");
     }
-    memcpy(buff,&sensor_data,sizeof(meter_sensor_data_t));
+    memcpy(buff,&sensor_data,MIN(sizeof(meter_sensor_data_t),buff_len));
 }
 
 function_control_param_t* get_func_param(void){
@@ -420,7 +420,7 @@ S2jHook rt_s2jHook = {
         .free_fn = rt_free,
 };
 
-void save_satte_file(){
+void save_state_file(){
 	char* json_string= build_state_json();
 	LOG_W(json_string);
 	if(param_fd==NULL){
