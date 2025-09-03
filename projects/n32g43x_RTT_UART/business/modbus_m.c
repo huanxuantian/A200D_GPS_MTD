@@ -65,10 +65,11 @@ static volatile uint8_t modbus_clear_flag=0;
 
 
 uint16_t input_block[16];
-void init_block_data(){
+int init_block_data(){
 	memset((unsigned char*)&input_block,0,sizeof(input_block));
+	return 0;
 }
-
+INIT_APP_EXPORT(init_block_data)
 
 int build_input_data(unsigned char* buff,int buff_size)
 {

@@ -269,7 +269,7 @@ unsigned int  get_ext_mv(){
 }
 
 
-void init_adc_config(){
+int init_adc_config(){
 	
 	rt_adc_device_t adc_dev;
 	adc_dev = (rt_adc_device_t)rt_device_find("adc");
@@ -278,7 +278,9 @@ void init_adc_config(){
 	rt_adc_enable(adc_dev, EXT_ADC_CHN);
 	update_adc();
 	}
+	return 0;
 }
+INIT_ENV_EXPORT(init_adc_config)
 
 void output_init(){
 	rt_pin_mode(OUT_LOCK_PIN, PIN_MODE_OUTPUT);
@@ -337,10 +339,11 @@ void spk_init(){
 
 //WARNING: this init for hard pin only before all other device init ,
 //DONT! USE! device function here ,no device config init before this
-void bsp_init(){
+int bsp_init(){
 	input_init();
 	output_init();
 	inout_init();
 	ext_power_init();
 	spk_init();
 }
+INIT_BOARD_EXPORT(bsp_init)

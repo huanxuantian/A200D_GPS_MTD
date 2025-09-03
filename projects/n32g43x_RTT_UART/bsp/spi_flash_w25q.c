@@ -743,7 +743,7 @@ rt_err_t rt_flash_register(rt_uint8_t flag)
 #define DBG_SECTION_NAME    "SPI-I"
 #include <rtdbg.h>
 
-void init_spi_flash()
+int init_spi_flash()
 {
 		rt_device_t storage_dev;
 		uint32_t device_id = 0;
@@ -764,6 +764,7 @@ void init_spi_flash()
 		}
 		rt_thread_mdelay(50);
 }
+INIT_ENV_EXPORT(init_spi_flash)
 /**
  * @}
  */

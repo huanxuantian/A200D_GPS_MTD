@@ -62,7 +62,7 @@ void update_iccid(char* iccid);
 void get_iccid(char* buff,int buffer_size);
 
 unsigned int  build_uuid(unsigned char* buff,int buff_size);
-void init_adc_config();
+int init_adc_config();
 unsigned int get_pwr_mv();
 unsigned int get_ext_mv();
 
@@ -70,7 +70,7 @@ void wd_feed();
 void led_link_handle();
 void led_link_set(unsigned char mode);
 
-void bsp_init();
+int bsp_init();
 
 int acc_state_poll(char mode);
 void init_update_output(int chn,int level);
