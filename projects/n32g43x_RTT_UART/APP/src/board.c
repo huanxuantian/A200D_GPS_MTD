@@ -101,9 +101,9 @@ void rt_system_reset()
 void rt_show_appversion(void){
 		rt_kprintf("\n=======================================\n");
 		rt_kprintf(" \\ | /\n");
-		rt_kprintf(" FT APPVERSION: %s build %s [%s]\n",SW_VERSION_APP, __DATE__,__TIME__);
+		rt_kprintf(" SKT APPVERSION: %s build %s [%s]\n",SW_VERSION_APP, __DATE__,__TIME__);
 		rt_kprintf(" / | \\    \n");
-		rt_kprintf(" 200x - 2024 Copyright by SHINKI team \n");
+		rt_kprintf(" 200x - 2024 Copyright by SHINKI KIND Tech team \n");
 		rt_kprintf(" APP_FLAG %s\n",FAPP_VERSION);
 		rt_kprintf("=======================================\n");
 
