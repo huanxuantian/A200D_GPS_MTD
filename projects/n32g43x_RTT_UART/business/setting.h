@@ -131,7 +131,7 @@ void update_thm_data(thm_sensor_data_t data);
 void update_lux_data(lux_sensor_data_t data);
 void build_sensor_data(unsigned char* buff,int buff_len);
 
-void setting_init();
+int setting_init();
 
 #ifdef __cplusplus
 }

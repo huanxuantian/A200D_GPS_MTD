@@ -151,7 +151,7 @@ void rt_hw_board_init()
 #ifdef RT_USING_CONSOLE
     rt_console_set_device(RT_CONSOLE_DEVICE_NAME);
 #endif
-    bsp_init();
+    //bsp_init();
 	rt_show_appversion();
     
 }

@@ -447,7 +447,7 @@ void load_state_file(){
 }
 
 
-void setting_init()
+int setting_init()
 {
 	s2j_init(&rt_s2jHook);
 	init_setting_params();
@@ -455,5 +455,6 @@ void setting_init()
 	init_io_setting();
 	init_sensor_data();
 	load_state_file();
-	
+	return 0;
 }
+INIT_APP_EXPORT(setting_init)

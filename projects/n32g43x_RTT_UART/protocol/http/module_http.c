@@ -147,8 +147,9 @@ int http_update_info_init(void)
 	#endif
 	//init load and check_update info,call before update
 	memset(&system_http_task,0,sizeof(http_task_t));
-    return 1;
+    return 0;
 }
+INIT_APP_EXPORT(http_update_info_init)
 
 //通用初始化文件（删除并创建空文件,SPI-flash 按照预分配擦除对应的page）
 static void initupdatedata(char* fname)

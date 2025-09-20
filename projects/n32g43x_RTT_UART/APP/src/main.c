@@ -56,13 +56,13 @@ int main(void)
 	rt_uint8_t gnss_stack[ 1024 ];
 	struct rt_thread gnss_thread;
 
-	#if USE_INPUT_BLOCK
-	init_block_data();
-	#endif
-	init_spi_flash();
-	http_update_info_init();
-	setting_init();
-	init_adc_config();
+	// #if USE_INPUT_BLOCK
+	// init_block_data();
+	// #endif
+	//init_spi_flash();
+	//http_update_info_init();
+	//setting_init();
+	//init_adc_config();
     /* init uart_rx_event */
     result = rt_event_init(&system_event, "event", RT_IPC_FLAG_FIFO);
     if (result != RT_EOK)

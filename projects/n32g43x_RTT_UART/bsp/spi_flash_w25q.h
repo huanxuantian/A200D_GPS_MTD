@@ -132,7 +132,7 @@ typedef enum
 #define SPI2_NSS_PORT            GPIOB       /* GPIOB */
 #define SPI2_NSS_PORT_CLK        RCC_APB2_PERIPH_GPIOB
 
-void init_spi_flash();
+int init_spi_flash();
 rt_err_t rt_flash_register(rt_uint8_t flag);
 
 #ifdef __cplusplus
