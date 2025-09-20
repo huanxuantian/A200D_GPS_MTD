@@ -667,9 +667,14 @@ int module_connet_parm_init(gnss_device_t gsm_dev)
                 }
 				rt_thread_mdelay(200);
         }
-        if(get_socket_flag(1) <=0 && ucStateNum == MD_RUN_OK)
+        if(get_socket_flag(1) <=0 )
         {
             cip_sock_open(gsm_dev,1,SEED_HOST,SEED_PORT);
+        }
+        if(get_socket_flag(1) >0 || get_socket_flag(0) >0)
+        {
+            ucErrorTimes = 0;
+            ucStateNum = MD_RUN_OK;
         }
         #endif
 

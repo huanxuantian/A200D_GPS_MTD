@@ -125,6 +125,7 @@ int send_AT_CMD(gnss_device_t gsm_dev,char* cmd,char* match,int mstimeout)
 				if(at_urc_keyword_matching((unsigned char*)at_recv,match)){
 					match_ok =1;
                     LOG_W(" check match OK EXT");
+                    break;
 				}
 				rt_thread_mdelay(50);
 			}
