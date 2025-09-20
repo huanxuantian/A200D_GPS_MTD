@@ -185,6 +185,8 @@ static rt_err_t configure(struct rt_spi_device* device, struct rt_spi_configurat
 
 static rt_uint32_t xfer(struct rt_spi_device* device, struct rt_spi_message* message)
 {
+    int wait_count=2000;
+    int err_count=0;
     struct w25qxx_spi_cs *cs_pin = device->parent.user_data;
     SPI_Module* spi_periph = (SPI_Module*)device->bus->parent.user_data;
     struct rt_spi_configuration * config = &device->config;
@@ -213,15 +215,32 @@ static rt_uint32_t xfer(struct rt_spi_device* device, struct rt_spi_message* mes
                 {
                     data = *send_ptr++;
                 }
+                if(err_count >10){break;}
                                 
                 /*!< Loop while DAT register in not emplty */
-                while (SPI_I2S_GetStatus(spi_periph, SPI_I2S_TE_FLAG) == RESET);
+                wait_count=200;
+                while (SPI_I2S_GetStatus(spi_periph, SPI_I2S_TE_FLAG) == RESET)
+                {
+                    wait_count--;
+                    if(wait_count==0){
+                        err_count++;
+                        break;
+                    }
+                }
                 
                 // Send the byte
                 SPI_I2S_TransmitData(spi_periph, data);
 
                 //Wait until a data is received
-                while(SPI_I2S_GetStatus(spi_periph, SPI_I2S_RNE_FLAG) == RESET);
+                wait_count=200;
+                while(SPI_I2S_GetStatus(spi_periph, SPI_I2S_RNE_FLAG) == RESET)
+                {
+                    wait_count--;
+                    if(wait_count==0){
+                        err_count++;
+                        break;
+                    }
+                }
                 
                 // Get the received data
                 data = SPI_I2S_ReceiveData(spi_periph);
@@ -246,15 +265,32 @@ static rt_uint32_t xfer(struct rt_spi_device* device, struct rt_spi_message* mes
                 {
                     data = *send_ptr++;
                 }
+                if(err_count >10){break;}
                 
                  /*!< Loop while DAT register in not emplty */
-                while (SPI_I2S_GetStatus(spi_periph, SPI_I2S_TE_FLAG) == RESET);
+                 wait_count=200;
+                while (SPI_I2S_GetStatus(spi_periph, SPI_I2S_TE_FLAG) == RESET)
+                {
+                    wait_count--;
+                    if(wait_count==0){
+                        err_count++;
+                        break;
+                    }
+                }
                 
                 // Send the byte
                 SPI_I2S_TransmitData(spi_periph, data);
 
                 //Wait until a data is received
-                while(RESET == SPI_I2S_GetStatus(spi_periph, SPI_I2S_RNE_FLAG));
+                wait_count=20000;
+                while(RESET == SPI_I2S_GetStatus(spi_periph, SPI_I2S_RNE_FLAG))
+                {
+                    wait_count--;
+                    if(wait_count==0){
+                        err_count++;
+                        break;
+                    }
+                }
                 
                 // Get the received data
                 data = SPI_I2S_ReceiveData(spi_periph);

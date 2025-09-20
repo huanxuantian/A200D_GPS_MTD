@@ -46,5 +46,6 @@ mcu_add_linker_script(${PROJECT_NAME} PUBLIC ${LINKER_SCRIPT})
 target_link_options(${PROJECT_NAME} PUBLIC -Xlinker -Map=${PROJECT_NAME}.map)
 
 mcu_generate_binary_file(${PROJECT_NAME})
+mcu_generate_hex_file(${PROJECT_NAME})
 mcu_print_size_of_target(${PROJECT_NAME})
 

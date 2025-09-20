@@ -122,7 +122,7 @@ add_definitions("-DN32G43X")
 add_definitions("-DRT_USING_MINILIBC")
 add_definitions("-DI2CSENSOR")
 add_definitions("-DDEBUG_APP")
-#add_definitions("-DDEBUG_UART1")
+add_definitions("-DDEBUG_UART1")
 add_definitions("-DDEBUG_SWD")
 
 set(PROJECT_SOURCES
@@ -170,5 +170,6 @@ mcu_add_linker_script(${PROJECT_NAME} PUBLIC ${LINKER_SCRIPT})
 target_link_options(${PROJECT_NAME} PUBLIC -Xlinker -Map=${PROJECT_NAME}.map)
 
 mcu_generate_binary_file(${PROJECT_NAME})
+mcu_generate_hex_file(${PROJECT_NAME})
 mcu_print_size_of_target(${PROJECT_NAME})
 
