@@ -707,12 +707,19 @@ static rt_err_t rt_flash_control(rt_device_t dev,
             tmp = sFLASH_ReadId();
             break;
         case RT_CMD_W25_ERASE_SECTOR:
-            rt_kprintf("erase sector,address=(0x%06X)\n",*(uint32_t *)args);
-            tmp = sFLASH_EraseSector(dev, *(uint32_t *)args);
+            if(is_flash_vaild())
+            {
+                rt_kprintf("erase sector,address=(0x%06X)\n",*(uint32_t *)args);
+                tmp = sFLASH_EraseSector(dev, *(uint32_t *)args);
+            }
             break;
         case RT_CMD_W25_ERASE_CHIP:
-            rt_kprintf("erase chip!!!!\n");
-            tmp = sFLASH_EraseBulk(dev);
+            if(is_flash_vaild())
+            {
+                rt_kprintf("erase chip!!!!\n");
+                tmp = sFLASH_EraseBulk(dev);
+            }
+
             break;
         default:
             break;
@@ -763,9 +770,13 @@ int init_spi_flash()
 					//write first block
 				}
 				LOG_W("flash device id = 0x%04x!!!",device_id);
-                if(device_id!=0xFFFFFFFF)
+                if(device_id!=0xFFFFF && device_id!=(sFLASH_DUMMY_BYTE<<8|sFLASH_DUMMY_BYTE) )
                 {
+                    LOG_W("FLASH DETECT");
                     update_flash_flag(1);
+                }else{
+                    LOG_W("FLASH NOT DETECT");
+                    update_flash_flag(0);
                 }
 		}
 		rt_thread_mdelay(50);
