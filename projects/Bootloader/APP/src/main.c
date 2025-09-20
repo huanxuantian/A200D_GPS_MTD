@@ -360,6 +360,9 @@ int main(void)
 
 		//try jump to app
 		Jump_To_App(APP_START_ADDRESS);
+		}else if(ret <0)
+		{
+			Jump_To_App(APP_START_ADDRESS);
 		}
 
     while (1)
