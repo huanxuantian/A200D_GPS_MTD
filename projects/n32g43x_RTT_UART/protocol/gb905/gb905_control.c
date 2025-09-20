@@ -25,19 +25,19 @@ static void gb905_debug_control(msg_control_t * control)
 {
 	DbgFuncEntry();
 
-	DbgPrintf("cmd = %d\r\n",control->control_cmd);
-	DbgPrintf("device_type = %d\r\n",control->device_info.device_type);
-	DbgPrintf("vendor_id = 0x%x\r\n",control->device_info.vendor_id);
-	DbgPrintf("hw_version = %d\r\n",control->device_info.hw_version);
-	DbgPrintf("sw_version[0] = 0x%x\r\n",control->device_info.sw_version[0]);
-	DbgPrintf("sw_version[1] = 0x%x\r\n",control->device_info.sw_version[1]);
+	DbgPrintf("cmd = %d",control->control_cmd);
+	DbgPrintf("device_type = %d",control->device_info.device_type);
+	DbgPrintf("vendor_id = 0x%x",control->device_info.vendor_id);
+	DbgPrintf("hw_version = %d",control->device_info.hw_version);
+	DbgPrintf("sw_version[0] = 0x%x",control->device_info.sw_version[0]);
+	DbgPrintf("sw_version[1] = 0x%x",control->device_info.sw_version[1]);
 
-	DbgPrintf("update_server_apn = %s\r\n",control->update_server_apn);
-	DbgPrintf("update_server_username = %s\r\n",control->update_server_username);
-	DbgPrintf("update_server_password = %s\r\n",control->update_server_password);
-	DbgPrintf("update_server_ipaddr = %s\r\n",control->update_server_ipaddr);
+	DbgPrintf("update_server_apn = %s",control->update_server_apn);
+	DbgPrintf("update_server_username = %s",control->update_server_username);
+	DbgPrintf("update_server_password = %s",control->update_server_password);
+	DbgPrintf("update_server_ipaddr = %s",control->update_server_ipaddr);
 
-	DbgPrintf("update_server_tcp_port = %d\r\n",control->update_server_tcp_port);
+	DbgPrintf("update_server_tcp_port = %d",control->update_server_tcp_port);
 
 	DbgFuncExit();
 }
@@ -116,14 +116,14 @@ void gb905_update_treat(unsigned char index,gb905_msg_control_t * msg_control)
 	}
 
 	
-	DbgError("device_type =0x%02x \r\n",control_info.device_info.device_type);
+	DbgError("device_type =0x%02x ",control_info.device_info.device_type);
 	gb905_debug_control(&control_info);
 	//save_sw_version_info(msg_control->device_info.sw_version);
 
 	//start with http:
 	if(strstr((char*)ipaddr,"http:")==(char*)ipaddr)
 	{
-	DbgError("control_info.device_info.device_type QQfff =0x%02x \r\n",control_info.device_info.device_type);
+	DbgError("control_info.device_info.device_type QQfff =0x%02x ",control_info.device_info.device_type);
 		//demo_download_test();
 		switch(control_info.device_info.device_type)
 		{
@@ -131,7 +131,7 @@ void gb905_update_treat(unsigned char index,gb905_msg_control_t * msg_control)
 				new_add_http_update_task(index,(char*)ipaddr,1024,UPDATE_SHINKI_APP_PATH,30,600,control_info.device_info.device_type);
 				//parse_url(ipaddr,full_disk_info.host,&full_disk_info.port,full_disk_info.file_name);
 				
-				DbgPrintf("full disk update file path::%s\r\n",full_disk_info.file_name);
+				DbgPrintf("full disk update file path::%s",full_disk_info.file_name);
 				//new_add_http_update_task(index,ipaddr,16*1024,full_disk_update_path,30,24*3600,control_info.device_info.device_type);
 				break;
 			case UPDATE_METER_APP:
@@ -152,7 +152,7 @@ void gb905_update_treat(unsigned char index,gb905_msg_control_t * msg_control)
 		}
 		else
 		{
-			DbgError("udp info ip/port error!!! \r\n");
+			DbgError("udp info ip/port error!!! ");
 		}
 	}
 	DbgFuncExit();
@@ -172,7 +172,7 @@ unsigned char gb905_control_treat(unsigned char index,unsigned short seq,unsigne
     	
 	msg_control = (gb905_msg_control_t *)buf;
 	
-	DbgError("msg_control->control_cmd =0x%02x \r\n",msg_control->control_cmd);
+	DbgError("msg_control->control_cmd =0x%02x ",msg_control->control_cmd);
 	switch(msg_control->control_cmd)
 	{
 		case GB905_CONTROL_UPDATE:
@@ -191,7 +191,7 @@ unsigned char gb905_control_treat(unsigned char index,unsigned short seq,unsigne
 		case GB905_CONTROL_OFF_COMMUNICATION:
 			break;
 		default:
-			DbgWarn("Don't support this control command(%d)\r\n",msg_control->control_cmd);
+			DbgWarn("Don't support this control command(%d)",msg_control->control_cmd);
 			break;
 			
 	}

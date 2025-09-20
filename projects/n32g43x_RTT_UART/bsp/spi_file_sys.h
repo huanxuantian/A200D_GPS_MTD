@@ -56,6 +56,8 @@ typedef enum{
 }spi_file_control_cmd;
 
 
+void update_flash_flag(int falg);
+int is_flash_vaild();
 
 int build_spi_fs_fd(spi_file_fd fd,rt_uint32_t Saddress,int file_size);
 

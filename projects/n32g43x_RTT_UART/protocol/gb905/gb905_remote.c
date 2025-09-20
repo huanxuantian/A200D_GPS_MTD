@@ -13,9 +13,9 @@ unsigned char gb905_remote_control_treat(unsigned char index,unsigned short seq,
 
     msg_remote = (msg_remote_t *)buf;
 
-	DbgPrintf("channel = 0x%x\r\n",msg_remote->channel);
+	DbgPrintf("channel = 0x%x",msg_remote->channel);
 
-	DbgPrintf("cmd = 0x%x\r\n",msg_remote->cmd);
+	DbgPrintf("cmd = 0x%x",msg_remote->cmd);
 	switch(msg_remote->channel)
     {
         case TAXI_CONTROL_OIL:   //油路控制项 0：恢复车辆油路 1：断开车辆油路
@@ -79,10 +79,10 @@ unsigned char fleety_remote_new_meter_lock_treat(unsigned short seq,unsigned cha
 	lock_info = (gb905_fleety_new_meter_lock_info*)buf;
 	lock_subtype=EndianReverse16(lock_info->lock_subtype);
 	if(lock_subtype>=8){
-		DbgWarn("subtype [%d] not usefull!not control to lock/unlock!\r\n",lock_info->lock_subtype);
+		DbgWarn("subtype [%d] not usefull!not control to lock/unlock!",lock_info->lock_subtype);
 		return GB905_RESULT_OK;
 	}
-	DbgWarn("%s detect,lock_flag=%d,subtype=%d!\r\n",__FUNCTION__,lock_info->lock_flag,lock_subtype);
+	DbgWarn("%s detect,lock_flag=%d,subtype=%d!",__FUNCTION__,lock_info->lock_flag,lock_subtype);
 	memset(&meter_lock_ctl,0,sizeof(meter_lock_ctl));
 
 	if(lock_info->lock_flag==0)

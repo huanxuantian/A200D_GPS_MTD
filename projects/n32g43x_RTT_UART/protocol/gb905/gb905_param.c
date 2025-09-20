@@ -229,7 +229,7 @@ static int get_pamams_id_len(unsigned char index,unsigned short id){
             break;
     }
 
-	DbgWarn("params(0x%04x) len = %d\r\n",id,len);
+	DbgWarn("params(0x%04x) len = %d",id,len);
 	DbgFuncExit();
 
 	return len;
@@ -247,7 +247,7 @@ static int gb905_build_id(unsigned char index,unsigned short id,unsigned char *b
 
     setting_params = get_setting_params();
 
-    DbgPrintf("params id = 0x%04x\r\n",id);
+    DbgPrintf("params id = 0x%04x",id);
     
 
 
@@ -356,7 +356,7 @@ static int gb905_build_id(unsigned char index,unsigned short id,unsigned char *b
             memcpy(buf,temp_str,len);
 			break;
         default:
-            DbgWarn("param id is not supported!::id =0x%04x\r\n",id);
+            DbgWarn("param id is not supported!::id =0x%04x",id);
             break;
     }
     DbgFuncExit();
@@ -383,7 +383,7 @@ static int gb905_build_params(unsigned char index,unsigned char *buf,int len,uns
 	gb905_debug_header(header);
 
 	offset += sizeof(gb905_msg_header_t);
-	DbgPrintf("offset = %d\r\n",offset);
+	DbgPrintf("offset = %d",offset);
 
 	*(unsigned short *)(&buf[offset]) = EndianReverse16(msg_serial_number);
 	offset += 2;
@@ -394,24 +394,24 @@ static int gb905_build_params(unsigned char index,unsigned char *buf,int len,uns
 		if(offset >= len-2)
 		{
 			offset= offset-(sizeof(msg_params_t)-4);
-			DbgError("build params predata error!\r\n");
+			DbgError("build params predata error!");
 			break;
 		}
         size = get_pamams_id_len(index,id_buf[i]);
 		if(size<=0||offset+size>len-2)
 		{
-			DbgWarn("param(0x%04X) size(%d) error!\r\n",id_buf[i],size);
+			DbgWarn("param(0x%04X) size(%d) error!",id_buf[i],size);
 			offset= offset-(sizeof(msg_params_t)-4);
 			DbgPrintf("offset = %d\r\n",offset);
 			continue;
 		}
         size = gb905_build_id(index,id_buf[i],&buf[offset]);
-        DbgGood("param(0x%04X) size(%d) OK!\r\n",id_buf[i],size);
+        DbgGood("param(0x%04X) size(%d) OK!",id_buf[i],size);
 				//DbgHexGood("paramdata:",&buf[offset],size);
         if(size<=0||offset+size>len-2)
 		{
 			offset= offset-(sizeof(msg_params_t)-4);
-			DbgPrintf("offset = %d\r\n",offset);
+			DbgPrintf("offset = %d",offset);
 			continue;
 		}
 		else
@@ -419,14 +419,14 @@ static int gb905_build_params(unsigned char index,unsigned char *buf,int len,uns
 			offset += size;
 		}
 		
-		DbgPrintf("offset = %d\r\n",offset);
+		DbgPrintf("offset = %d",offset);
 		
 		msg_params->len = size;
 		msg_params->id = EndianReverse16(id_buf[i]);
 
 		if(offset > len-2)
 		{
-			DbgError("build params break!\r\n");
+			DbgError("build params break!");
 			break;
 		}
     }
@@ -445,7 +445,7 @@ static unsigned char gb905_params_single_treat(unsigned char index,unsigned shor
     DbgFuncEntry();
 
 	setting_params = get_setting_params();
-	DbgPrintf(" param id is %d\r\n",id);
+	DbgPrintf(" param id is %d",id);
 
     switch(id)
     {
@@ -581,7 +581,7 @@ static unsigned char gb905_params_single_treat(unsigned char index,unsigned shor
 			}
 			break;
         default:
-			DbgWarn("msg id is not supported!id = %d\r\n",id);
+			DbgWarn("msg id is not supported!id = %d",id);
 			break;
     }
     DbgFuncExit();
@@ -610,8 +610,8 @@ void gb905_get_params_treat(unsigned char index,unsigned char *buf,int len){
 	id_len = header->msg_len / 2;
 	sequence = header->msg_serial_number;
 	
-	DbgPrintf("id_len = %d\r\n",id_len);
-	DbgPrintf("sequence = %d\r\n",sequence);
+	DbgPrintf("id_len = %d",id_len);
+	DbgPrintf("sequence = %d",sequence);
 
 	ack_len = sizeof(gb905_msg_header_t) + 5;	
 	for(i=0;i<id_len;i++)
@@ -635,14 +635,14 @@ void gb905_get_params_treat(unsigned char index,unsigned char *buf,int len){
 	}
 	if(vaild_count==0)
 	{
-		DbgWarn("no known param for ack!\r\n");
+		DbgWarn("no known param for ack!");
 		return;
 	}
     
 	
-	DbgPrintf("ack_len = %d\r\n",ack_len);
+	DbgPrintf("ack_len = %d",ack_len);
     if(ack_len >= sizeof(temp_buff)){
-        DbgWarn("param ack data ize overflow!\r\n");
+        DbgWarn("param ack data ize overflow!");
         return;
     }
 	
@@ -669,15 +669,15 @@ unsigned char gb905_set_params_treat(unsigned char index,unsigned char *buf,int 
     {
         return GB905_RESULT_OK;//ack only
     }
-	DbgPrintf("offset = %d\r\n",offset);
-	DbgPrintf("len = %d\r\n",len);
+	DbgPrintf("offset = %d",offset);
+	DbgPrintf("len = %d",len);
 
     do{
 		msg_params = (msg_params_t *)&buf[offset];
 		id = EndianReverse16(msg_params->id);
 
-		DbgPrintf("id = 0x%4x\r\n",id);
-		DbgPrintf("params_len = 0x%2x\r\n",msg_params->len);
+		DbgPrintf("id = 0x%4x",id);
+		DbgPrintf("params_len = 0x%2x",msg_params->len);
 
 		if(gb905_params_single_treat(index,id,msg_params)>0){
             save_flag=1;
@@ -687,12 +687,12 @@ unsigned char gb905_set_params_treat(unsigned char index,unsigned char *buf,int 
 		offset += msg_params->len + sizeof(msg_params_t) - 4;
 		len -= msg_params->len + sizeof(msg_params_t) - 4;
 
-		DbgPrintf("offset = %d\r\n",offset);
-		DbgPrintf("len = %d\r\n",len);
+		DbgPrintf("offset = %d",offset);
+		DbgPrintf("len = %d",len);
 	}while(len > 0);
     
     if(save_flag){
-        DbgWarn("update param save param!!!\r\n");
+        DbgWarn("update param save param!!!");
         set_setting_params();
     }
     

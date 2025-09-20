@@ -20,7 +20,7 @@ int gb905_escape(unsigned char *dest, unsigned char *src, int len)
 	
 	if(!dest || !src || !len)
 	{
-		DbgError("params error!\r\n");
+		DbgError("params error!");
 		return -1;
 	}
 	
@@ -51,7 +51,7 @@ int gb905_unescape(unsigned char *dest, unsigned char *src, int len)
 
 	if( !dest || !src || !len )
 	{
-		DbgError("params error!\r\n");
+		DbgError("params error!");
 		return -1;
 	}
 	
@@ -68,7 +68,7 @@ int gb905_unescape(unsigned char *dest, unsigned char *src, int len)
 			src_offset++;
 			if(src_offset == len)
 			{
-				DbgError("not unescape number error!\r\n");
+				DbgError("not unescape number error!");
 				return -1;
 			}
 			else if(src[src_offset] == 0x01)
@@ -81,7 +81,7 @@ int gb905_unescape(unsigned char *dest, unsigned char *src, int len)
 			}
 			else
 			{
-				DbgError("unescape number error!\r\n");
+				DbgError("unescape number error!");
 				return -1;
 			}
 		}
@@ -104,7 +104,7 @@ static void gb905_common_ack_treat(unsigned char index,unsigned char *buf,int le
 
     ack->seq = EndianReverse16(ack->seq);
 	ack->id = EndianReverse16(ack->id);
-	DbgWarn("gb905 socket %d common ack->id = 0x%04x,seq=0x%04x,ack_flag=%d\r\n",index,ack->id,ack->seq,ack->result);
+	DbgWarn("gb905 socket %d common ack->id = 0x%04x,seq=0x%04x,ack_flag=%d",index,ack->id,ack->seq,ack->result);
 	
 }
 
@@ -160,7 +160,7 @@ int gb905_get_a_full_msg(unsigned char *buf,int len,gb905_msg_t *msg)
 			//len = (tail_offset+1)-head_offset
 			if((tail_offset + 1) - head_offset < sizeof(gb905_msg_header_t) + 3)
 			{
-				DbgPrintf("Warning: Recevie message with invalid size, ignore it!!!\n");
+				DbgPrintf("Warning: Recevie message with invalid size, ignore it!!!");
 				offset = tail_offset;//too short ,reserve tail as next head
 			}
 			else
@@ -210,7 +210,7 @@ static int gb905_parse_header(gb905_msg_t * msg)
 	{
 		ret = 0;
 
-		DbgError("msg len is invaild!\r\n");
+		DbgError("msg len is invaild!");
 		return ret;
 	}
 	header->msg_id = EndianReverse16(header->msg_id);
@@ -233,7 +233,7 @@ static int parse_protocol(unsigned char index,gb905_msg_t * msg)
 
 	msg_no = header->msg_id;
 
-	DbgWarn("gb905 socket %d parse message,msg_id:0x%04x,seq:0x%04x,body_data_len:0x%04x\r\n",
+	DbgWarn("gb905 socket %d parse message,msg_id:0x%04x,seq:0x%04x,body_data_len:0x%04x",
 		index,header->msg_id,header->msg_serial_number,header->msg_len);
 	switch (msg_no)
 	{
@@ -341,7 +341,7 @@ int gb905_protocol_anaylze(unsigned char index,unsigned char * buf,int len)
 			{
 				if(msg.msg_buf[msg.msg_len - 2] != xor8_computer(msg.msg_buf + 1,msg.msg_len - 3))
 				{
-					DbgError("xor verify failed!\r\n");
+					DbgError("xor verify failed!");
 				}
 				else
 				{
@@ -382,7 +382,7 @@ void gb905_send_ack(unsigned char index,gb905_msg_header_t * header,unsigned cha
 	gb905_build_header(&ack.header,MESSAGE_GENERAL_UP_ACK,sizeof(msg_general_ack_t));
 	gb905_build_ack(&ack.ack,header,result);
 	//DbgWarn("socket %d(%s) send ack,msg_id:0x%04x,seq:0x%04x,ack:0x%02x\r\n",index,get_socket_name(index),header->msg_id,header->msg_serial_number,result);
-	DbgWarn("socket %d send ack,msg_id:0x%04x,seq:0x%04x,ack:0x%02x\r\n",index,header->msg_id,header->msg_serial_number,result);
+	DbgWarn("socket %d send ack,msg_id:0x%04x,seq:0x%04x,ack:0x%02x",index,header->msg_id,header->msg_serial_number,result);
 	gb905_send_data(index,(unsigned char *)&ack,sizeof(gb905_general_ack_t));
 
 	DbgFuncExit();
@@ -519,7 +519,7 @@ int gb905_send_data(unsigned char socket_index,unsigned char * buf, int len)
 	if(socket <= 0)
 	{
 		//DbgError("socket %d(%s)  invaild when send\r\n",socket_index,get_socket_name(socket_index));
-		DbgError("from socket %d invaild when send\r\n",socket_index);
+		DbgError("from socket %d invaild when send",socket_index);
 		return 0;
 	}
 	
@@ -538,7 +538,7 @@ int gb905_send_data(unsigned char socket_index,unsigned char * buf, int len)
 	new_buf = temp_buff;
 	if(sizeof(temp_buff)<len*2)
 	{
-		DbgError("gb905 Message too large for protocol!\r\n");
+		DbgError("gb905 Message too large for protocol!");
 		return -1;
 	}
 
@@ -564,17 +564,17 @@ void gb905_debug_header(gb905_msg_header_t * header)
 	return;
 	DbgFuncEntry();
 
-	DbgPrintf("msg_id = 0x%x\r\n",header->msg_id);
-	DbgPrintf("msg_len = 0x%x\r\n",header->msg_len);
+	DbgPrintf("msg_id = 0x%x",header->msg_id);
+	DbgPrintf("msg_len = 0x%x",header->msg_len);
 	
-	DbgPrintf("termina_id[0] = 0x%02x\r\n",header->terminal_id[0]);
-	DbgPrintf("termina_id[1] = 0x%02x\r\n",header->terminal_id[1]);
-	DbgPrintf("termina_id[2] = 0x%02x\r\n",header->terminal_id[2]);
-	DbgPrintf("termina_id[3] = 0x%02x\r\n",header->terminal_id[3]);
-	DbgPrintf("termina_id[4] = 0x%02x\r\n",header->terminal_id[4]);
-	DbgPrintf("termina_id[5] = 0x%02x\r\n",header->terminal_id[5]);
+	DbgPrintf("termina_id[0] = 0x%02x",header->terminal_id[0]);
+	DbgPrintf("termina_id[1] = 0x%02x",header->terminal_id[1]);
+	DbgPrintf("termina_id[2] = 0x%02x",header->terminal_id[2]);
+	DbgPrintf("termina_id[3] = 0x%02x",header->terminal_id[3]);
+	DbgPrintf("termina_id[4] = 0x%02x",header->terminal_id[4]);
+	DbgPrintf("termina_id[5] = 0x%02x",header->terminal_id[5]);
 
-	DbgPrintf("msg_serial_number = %d\r\n",header->msg_serial_number);
+	DbgPrintf("msg_serial_number = %d",header->msg_serial_number);
 	
 	DbgFuncExit();
 }
@@ -583,10 +583,10 @@ void gb905_debug_ack(unsigned char index,msg_general_ack_t * ack)
 {
 	DbgFuncEntry();
 	//DbgPrintf("from socket %d(%s)\r\n",index,get_socket_name(index));
-	DbgPrintf("from socket %d\r\n",index);
-	DbgPrintf("seq = 0x%x\r\n",ack->seq);
-	DbgPrintf("id = 0x%x\r\n",ack->id);
-	DbgPrintf("result = 0x%x\r\n",ack->result);
+	DbgPrintf("from socket %d",index);
+	DbgPrintf("seq = 0x%x",ack->seq);
+	DbgPrintf("id = 0x%x",ack->id);
+	DbgPrintf("result = 0x%x",ack->result);
 	
 	DbgFuncExit();
 }

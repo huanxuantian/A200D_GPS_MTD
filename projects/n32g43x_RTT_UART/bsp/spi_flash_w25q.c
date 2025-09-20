@@ -42,6 +42,8 @@
 #endif
 #include "drv_gpio.h"
 
+#include <system_bsp.h>
+
 /** @addtogroup Utilities
  * @{
  */
@@ -761,6 +763,10 @@ int init_spi_flash()
 					//write first block
 				}
 				LOG_W("flash device id = 0x%04x!!!",device_id);
+                if(device_id!=0xFFFFFFFF)
+                {
+                    update_flash_flag(1);
+                }
 		}
 		rt_thread_mdelay(50);
 }

@@ -9,6 +9,18 @@
 #endif
 #include "spi_file_sys.h"
 
+static int spi_flash_vaild_flag=0;
+
+void update_flash_flag(int flag)
+{
+	spi_flash_vaild_flag = flag;
+}
+
+int is_flash_vaild()
+{
+	return spi_flash_vaild_flag;
+}
+
 static int spi_fs_control(spi_file_fd fd,spi_file_control_cmd cmd,rt_uint8_t* data);
 
 int build_spi_fs_fd(spi_file_fd fd,rt_uint32_t Saddress,int file_size){
@@ -34,6 +46,10 @@ int spi_fs_open(spi_file_fd fd,spi_file_mode mode){
     
     //read file head for fd handle
     //set mode and init flag and base offset
+	if(!is_flash_vaild())
+	{
+		return -1;
+	}
     if(fd==NULL){return -1;}
     fd->mode = mode;
     //if(fd->Saddress >= FS_MAX_ADDRESS|| fd->sector_count <= 0){return -2;}
@@ -80,6 +96,10 @@ int spi_fs_write(spi_file_fd fd,rt_uint8_t* data,rt_int32_t data_size){
 	uint32_t sector_data_offset;
 	uint8_t* sfs_buff=RT_NULL;
 #endif
+	if(!is_flash_vaild())
+	{
+		return -1;
+	}
     if(fd==NULL){return -1;}
     if(fd->state<=0 || fd->mode ==SPI_FS_MODE_RO) {return -2;}
     //if(fd->storage_dev==RT_NULL) {return -3;}
@@ -194,6 +214,10 @@ int spi_fs_write(spi_file_fd fd,rt_uint8_t* data,rt_int32_t data_size){
 int spi_fs_read(spi_file_fd fd,rt_uint8_t* buff,rt_int32_t buff_size){
     rt_size_t ret=0;
     uint32_t data_address;
+	if(!is_flash_vaild())
+	{
+		return -1;
+	}
     if(fd==NULL){return -1;}
     if(fd->state<=0) {return -2;}
     //if(fd->storage_dev==RT_NULL) {return -3;}
