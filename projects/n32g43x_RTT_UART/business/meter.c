@@ -600,7 +600,8 @@ void handle_meter_task()
 		if(OSTimeGet() - last_check_time > 30)
 		{
 			last_check_time = OSTimeGet();
-			LOG_E("meter task tick!");
+			LOG_I("meter task tick!");
+			gb2014_meter_heart_beat_ack();
 		}
 		
     }

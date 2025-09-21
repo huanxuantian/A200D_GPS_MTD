@@ -453,7 +453,7 @@ static int cip_sock_send(gnss_device_t gsm_dev,int index,void* data,int data_siz
                 data_send_count++;
                 rt_thread_mdelay(500);
                     
-            }while(data_send_count<=MAX_TRY_COUNT);
+            }while(0);//(data_send_count<=MAX_TRY_COUNT);
         }else{
             LOG_E("cip send step,need retry data");
         }

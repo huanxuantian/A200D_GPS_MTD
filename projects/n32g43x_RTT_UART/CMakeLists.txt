@@ -194,6 +194,7 @@ add_definitions("-DI2CSENSOR")
 add_definitions("-DDEBUG_APP")
 add_definitions("-DDEBUG_UART1")
 add_definitions("-DDEBUG_SWD")
+add_definitions("-DMETER_485")
 
 set(PROJECT_SOURCES
     ${DIR_SRCS}
